@@ -52,9 +52,12 @@ hagamoslo con el ip nuestro.
 </p>
 Bien, veremos una maquina que tiene varios puertos abierto, esa debe ser la máquina victima.
 
-Si observamos podemos ver que tiene varios puertos abiertos, hagamos un escaneo con nmap para ver que versiones de estos puertos tienen.
+Si observamos podemos ver que tiene varios puertos abiertos, hagamos un escaneo con nmap para ver que versiones de estos puertos tienen, usamos la bandera -sV
+  ```sh
+  nmap -sV (IP de la maquina victima)
+  ```
 <p align="left">
-  <img src="https://i.postimg.cc/bv26b42R/imagen-2024-09-16-233139363.png" width="75%" height="75%" align="">
+  <img src="https://i.postimg.cc/QtSj7fP0/imagen-2024-09-16-235310408.png" width="75%" height="75%" align="">
 </p>
 Bien, ahora podemos ver que hay varios servicios que corren pero todos son antiguos, significa que pueden ser vulnerables, probemos con el primero y investiguemos.
 
