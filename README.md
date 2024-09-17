@@ -143,5 +143,60 @@ Bien, dice que ya esta colocado, ahora ejecutemos el exploit con el comando "exp
   ```
 Nos dice que funciono, ahora podemos ver el contenido.
 
+Aunque no se muestra el contenido o algo que indique que entramos a la shell, relamente estamos dentro de esta, es solo buscar el contenido.
+pero realmente estamos hay, si colocamos el comando "ls" se vera que realmente estamos en la shell.
+
+```sh
+ls
+bin
+boot
+cdrom
+dev
+etc
+home
+initrd
+initrd.img
+lib
+lost+found
+media
+mnt
+nohup.out
+opt
+proc
+root
+sbin
+srv
+sys
+tmp
+usr
+var
+vmlinuz
+```
+Aunque se ve algo desordenado, podemos arreglar agregando el comando "clear", haciendo limpieza de la terminal. Ejemplo
+```sh
+cd && clear && ls
+```
+el "&&" es una forma de decir "y tambien".
+
+
+Vemos la carpeta "/home", ingresemos a esa carpeta.
+```sh
+ftp
+msfadmin
+service
+user
+```
+Vemos que hay cuantro usuarios, pero hay uno que llama la atencion, es el usuario "msfadmin". Ingresemos a el y busquemos que encontramos.
+```sh
+Desktop
+Documents
+Downloads
+Pictures
+vulnerable
+```
+vemos que hay varias carpetas dentro de este archivo, ahora solo es cosa de investigar dentro de ellas.
 ## OJO:
-Recordemos las carpetas Raiz, las cuales son "/etc", "/bin", "/share" y "/home", cada una tiene cosas que nos ayuda a organizar cada cosa, como "/home". El cual contiene los usuarios, posiblemente en otra carpeta llamada "users" o puede que no. Ya es cosa de verificar.
+Recordemos:
+Las carpetas Raiz, las cuales son "/etc", "/bin", "/share" y "/home", cada una tiene cosas que nos ayuda a organizar cada cosa, como "/home". El cual contiene los usuarios, posiblemente en otra carpeta llamada "users" o puede que no. Ya es cosa de verificar.
+
+Algunos tipos de cifrados que hay para los textos podemos encontrarlos en algunos codigos, algunos de estos son RSA, AES y DES.
