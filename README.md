@@ -73,14 +73,17 @@ Empezara a cargar Metasploit.
 <p align="left">
   <img src="https://i.postimg.cc/d3zDxWBw/imagen-2024-09-16-234723216.png" width="75%" height="75%" align="">
 </p>
-Bien, ahora usaremos un comando dentro de Metasploit, la cual nos ayudara a poder buscar dentro de sus modulos una vulnerabilidad que tenga. Este comando es "search", usemoslo con la version que encontramos.
+Bien, ahora usaremos un comando dentro de Metasploit, la cual nos ayudara a poder buscar dentro de sus modulos una vulnerabilidad que tenga. Este comando es "search", usemoslo con la version que encontramos
+
   ```sh
-  search vsftpd 2.3.4
+  search vsfpd 2.3.4
   ```
+
 <p align="left">
   <img src="https://i.postimg.cc/XJ2cP0mF/imagen-2024-09-16-235901481.png" width="75%" height="75%" align="">
 </p>
 Bien, nos muestra un resultado el cual nos ayudara, usemos el comando "use" para poder usarlo (valga la rebundancia XD).
+
   ```sh
   $  use 0
   ```
